@@ -1,0 +1,47 @@
+#left-side {
+  background-color: $turquoise;
+  transition: flex 0.5s;
+}
+#side-navigation {
+  padding: 40px 45px;
+  position: sticky;
+  top: 0;
+  @media screen and (max-width: $break-sm) {
+    padding: 40px 0;
+  }
+  header {
+    transition: 0.5s;
+    @media screen and (max-width: $break-sm) {
+      margin-top: 30px;
+      -webkit-transform: rotate(90deg);
+      -moz-transform: rotate(90deg);
+      -o-transform: rotate(90deg);
+      -ms-transform: rotate(90deg);
+      transform: rotate(90deg);
+    }
+  }
+  .options {
+    list-style: none;
+    padding-left: 0;
+    color: white;
+    margin-top: 40px;
+    line-height: 2rem;
+    font-size: 1rem;
+    @media screen and (max-width: $break-sm) {
+      text-align: center
+    }
+    li {
+      a {
+        color: white;
+        &:hover {
+          text-decoration: none;
+        }
+        span {
+          @media screen and (max-width: $break-sm) {
+            display: none
+          }
+        }
+      }
+    }
+  }
+}

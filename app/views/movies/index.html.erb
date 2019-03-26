@@ -1,0 +1,64 @@
+<%= render partial: "layouts/modals/new_movie_modal" %>
+<%= render partial: "layouts/modals/new_reservation_modal" %>
+<div id="movies">
+
+  <div class="row">
+    <div class="col-md-6">
+      <h2>Películas</h2>
+    </div>
+    <div class="col-md-6">
+      <button id="new-movie-btn" type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#new-movie-modal">
+        <%= fa_icon('plus') %>
+        Crear nueva película
+      </button>
+    </div>
+  </div>
+
+  <div class="row" id="dates-container">
+    <div class="col-12 no-padd">
+      <%= form_for :movie, url: {controller: 'movies', action: 'index'}, method: 'get' do |filter_form|%>
+        Seleccionar Fecha
+        <span class="dates">
+          <%= fa_icon 'calendar' %>
+          <%= filter_form.text_field :date, value: params[:movie].try(:[], 'date'), class: 'daterange single_date', "data-autosubmit": "true" %>
+        </span>
+      <% end %>
+    </div>
+  </div>
+
+  <div id="movies-list" class='row'>
+    <% if @movies.present? %>
+      <% @movies.each do |movie| %>
+        <div class='movie-container'>
+          <%= image_tag  movie["image_url"] %>
+          <div class='hover-button-container'>
+            <button
+              type="button"
+              class="btn btn-primary"
+              data-toggle="modal"
+              data-target="#new-reservation-modal"
+              data-behavior= "new_reservation_btn"
+              data-movie-id="<%= movie["id"] %>"
+              <%= 'disabled' unless movie["avilable_seats"] %>
+            >
+              Reservar
+            </button>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <h2>
+        <span>No tenemos peliculas disponibles para la fecha.</span>
+        <% if @next_available_movie_presentations_day %>
+          <span>
+            Te invitamos a revisar
+            <%= link_to  "la siguiente fecha con funciones disponibles",
+              movies_path({movie:  { date: @next_available_movie_presentations_day }})
+            %>
+          </span>
+        <% end %>
+      </h2>
+    <% end %>
+  </div>
+  <br>
+</div>

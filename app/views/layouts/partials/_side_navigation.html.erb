@@ -1,0 +1,19 @@
+<div id="side-navigation">
+  <header>
+    <%= image_tag  "placeit.svg" %>
+  </header>
+  <ul class='options'>
+    <li>
+      <%= link_to reservations_path do %>
+        <%= fa_icon "calendar" %>
+        <span> Reservas </span>
+      <% end%>
+    </li>
+    <li>
+      <%= link_to movies_path do %>
+        <%= fa_icon "film" %>
+        <span>Películas</span>
+      <% end %>
+    </li>
+  </ul>
+</div>

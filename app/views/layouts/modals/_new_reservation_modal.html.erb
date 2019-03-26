@@ -1,0 +1,22 @@
+<div class="modal fade" id="new-reservation-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Reservar</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <%= form_for :user, url: {controller: 'users', action: 'create'} do |form| %>
+        <div class="modal-body">
+          <%= render partial: "users/form_fields", locals: {form: form} %>
+        </div>
+        <div class="modal-footer">
+          <%= form.button :submit, class: "btn btn-primary" do %>
+            Reservar Ahora
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

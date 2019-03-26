@@ -1,0 +1,51 @@
+<div id="reservations">
+  <div class="row">
+    <div class="col-md-12">
+      <h2>Reservas Realizadas</h2>
+    </div>
+  </div>
+
+  <div class="row" id="dates-container">
+    <div class="col-12">
+      <%= form_for :reservation, url: {controller: 'reservations', action: 'index'}, method: 'get' do |filter_form|%>
+        <span class="dates">
+          <%= fa_icon 'calendar' %>
+          <%= filter_form.text_field :date_range, value: params[:reservation].try(:[], 'date_range'), class: 'daterange', "data-autosubmit": "true" %>
+        </span>
+      <% end %>
+    </div>
+  </div>
+  <% if @reservations.present? %>
+    <div class="table-responsive">
+      <table id="reservations-table" class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Película</th>
+            <th>Día</th>
+            <th>cédula</th>
+            <th>Nombre de usuario</th>
+            <th>email</th>
+            <th>celular</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @reservations.each do |reservation| %>
+            <tr>
+              <td><%= reservation["movie_name"] %></td>
+              <td><%= reservation["date"] %></td>
+              <td><%= reservation["user_personal_id"] %></td>
+              <td><%= reservation["user_names"] %></td>
+              <td><%= reservation["user_email"] %></td>
+              <td><%= reservation["user_cellphone"] %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% else %>
+    <h3>
+      No se encontraron reservaciones para el rango de fechas seleccionado.
+    </h3>
+  <% end %>
+</div>
+<br>

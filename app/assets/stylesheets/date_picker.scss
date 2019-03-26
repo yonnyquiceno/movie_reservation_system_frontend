@@ -1,0 +1,14 @@
+.dates {
+  border: 1px solid rgb(206, 212, 218);
+  padding: 3px 10px;
+  border-radius: 0.25rem;
+  color: gray;
+  white-space: nowrap;
+  @media screen and (max-width: $break-xs) {
+    font-size: 0.85rem;
+  }
+  .daterange {
+    border: none;
+    color: gray;
+  }
+}

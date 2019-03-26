@@ -1,0 +1,15 @@
+#reservations {
+  padding: 60px 40px;
+  @media screen and (max-width: $break-sm) {
+    padding: 35px 30px;
+  }
+  h2 {
+    margin-bottom: 30px;
+  }
+  h3 {
+    margin-top: 30px;
+  }
+  #reservations-table {
+    margin-top: 30px;
+  }
+}
